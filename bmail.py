@@ -5,7 +5,7 @@ import smtplib
 from datetime import datetime
 
 
-df = pd.read_excel('your_bdays_list.xlsx')
+df = pd.read_excel('your_bday_list1.xlsx')
 today = datetime.now().date()
 today_bdays = df[df['birthday'].dt.date == today]
 
@@ -19,7 +19,7 @@ for index, row in today_bdays.iterrows():
     email = row['email']
     message = f'{name} your birthday message'
     msg = MIMEText(message)
-    msg['Subject'] = 'Look who\'s shining all in their glory!'
+    msg['Subject'] = 'the appropriate subject accordingly'
     msg['From'] = 'enter your email'
     msg['To'] = email
     server.sendmail('enter your email', email, msg.as_string())
