@@ -1,12 +1,13 @@
 import pandas as pd
-from email.message import EmailMessage
+# from email.message import EmailMessage
 from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
+# from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 import smtplib
 from datetime import datetime
-from email import encoders
+# from email import encoders
+from urllib.request import urlopen
 
 
 df = pd.read_excel('your_bdays_list.xlsx')
@@ -24,15 +25,11 @@ for index, row in today_bdays.iterrows():
     text = f'{name} Thanu hopes that we can always be together on this life-adventure. You know that Thanu will always be your best of friends right!!? and so HAPPY BIRTHDAY {name}!! May all your wishes come true.'
     part1 = MIMEText(text, "plain")
     msg.attach(part1)
-    with open(r'C:\Users\yowaisquad\OneDrive\Documents\cake ig.png', 'rb') as f:
-        image_data = f.read()
-    image = MIMEBase(
-        'image', 'png', filename=r'C:\Users\yowaisquad\OneDrive\Documents\cake ig.png')
-    image.set_payload(image_data)
-    encoders.encode_base64(image)
-    image.add_header('Content-Disposition', 'attachment',
-                     filename=r'C:\Users\yowaisquad\OneDrive\Documents\cake ig.png')
-    msg.attach(image)
+
+    url = "file:///C:/Users/yowaisquad/OneDrive/Documents/cake/wishes.html"
+    html_content = urlopen(url).read().decode('utf-8')
+    body = MIMEText(html_content, 'html')
+    msg.attach(body)
 
 msg['Subject'] = 'Look who\'s shining on their glorious day!!'
 msg['From'] = 'janapareddythanmayee29@gmail.com'
