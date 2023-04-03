@@ -16,6 +16,8 @@ today_bdays = df[df['birthday'].dt.date == today]
 msg = MIMEMultipart()
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
+#the password used is the authorized app password
+#the Authorized-app-password can be generated in the gmail-account-manage-->security-->enable 2step verification-->App passwords-->select app and device-->generate
 server.login('janapareddythanmayee29@gmail.com', 'ygqyjjuntjqlbjkt')
 
 for index, row in today_bdays.iterrows():
