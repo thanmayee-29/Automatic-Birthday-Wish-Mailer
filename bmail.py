@@ -18,7 +18,7 @@ server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
 #the password used is the authorized app password
 #the Authorized-app-password can be generated in the gmail-account-manage-->security-->enable 2step verification-->App passwords-->select app and device-->generate
-server.login('janapareddythanmayee29@gmail.com', 'ygqyjjuntjqlbjkt')
+server.login('sender email', 'authorized app password')
 
 for index, row in today_bdays.iterrows():
     name = row['name']
@@ -34,9 +34,9 @@ for index, row in today_bdays.iterrows():
     msg.attach(body)
 
 msg['Subject'] = 'Look who\'s shining on their glorious day!!'
-msg['From'] = 'janapareddythanmayee29@gmail.com'
+msg['From'] = 'sender email'
 msg['To'] = email
-server.sendmail('janapareddythanmayee29@gmail.com', email, msg.as_string())
+server.sendmail('sender email', email, msg.as_string())
 
 
 server.quit()
